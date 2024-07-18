@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const mailchimp = require('@mailchimp/mailchimp_marketing');
 const cors = require('cors');
-
+const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 require('dotenv').config();
@@ -40,7 +40,7 @@ app.post('/submit-review', async (req, res) => {
     from: process.env.EMAIL,
     to: email,
     subject: 'Your Coupon Code',
-    text: 'Thank you for your review! Here is your coupon code: ABC123'
+    text: 'Dear ${firstName},\n\nThank you for your review! Here is your coupon code: ${process.env.COUPON_CODE}\n\nAttached is your free eBook.\n\nBest regards,\nCrovora Team',
     attachments: [
         {
           filename: 'ebook.pdf',
