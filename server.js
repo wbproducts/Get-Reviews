@@ -41,6 +41,13 @@ app.post('/submit-review', async (req, res) => {
     to: email,
     subject: 'Your Coupon Code',
     text: 'Thank you for your review! Here is your coupon code: ABC123'
+    attachments: [
+        {
+          filename: 'ebook.pdf',
+          path: path.join(__dirname, 'public', 'ebook.pdf'), // Ensure the eBook is in the 'public' directory
+          contentType: 'application/pdf',
+        },
+      ],
   };
 
   try {
